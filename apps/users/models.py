@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -6,6 +7,16 @@ GENDER_CHOICE = (
     ('male', '男'),
     ('female', '女')
 )
+
+
+# 将这个类放到最底层，避免被其他模块import
+class BaseModel(models.Model):
+    # 注意不能直接调用.now()方法，会在程序编译时就生成时间了，不是想要的结果
+    add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
+
+    class Meta:
+        # 防止migrate时生成一张表
+        abstract = True
 
 
 class UserProfile(AbstractUser):

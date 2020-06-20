@@ -1,0 +1,5 @@
+Django==2.2
+mysqlclient @ file:///C:/Users/ZZY/Downloads/mysqlclient-1.4.6-cp38-cp38-win32.whl
+Pillow==7.1.2
+pytz==2020.1
+sqlparse==0.3.1

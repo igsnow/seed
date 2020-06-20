@@ -31,3 +31,17 @@ class Course(BaseModel):
     class Meta:
         verbose_name = "课程信息"
         verbose_name_plural = verbose_name
+
+
+class Lesson(BaseModel):
+    # on_delete 表示对应的外键数据被删除后，当前的数据应该怎么办
+    # 如果on_delete设置为model.SET_NULL，则需要配置 null = True , blank = True，不然django报错
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, verbose_name='章节名')
+    learn_times = models.IntegerField(default=0, verbose_name='学习时长(分钟数)')
+
+    class Meta:
+        verbose_name = '课程章节'
+        verbose_name_plural = verbose_name
+
+

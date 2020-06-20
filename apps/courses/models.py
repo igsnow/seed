@@ -45,3 +45,12 @@ class Lesson(BaseModel):
         verbose_name_plural = verbose_name
 
 
+class Video(BaseModel):
+    lesson = models.ForeignKey(Lesson, verbose_name='章节', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, verbose_name='视频名')
+    learn_times = models.IntegerField(default=0, verbose_name='学习时长(分钟数)')
+    url = models.CharField(max_length=200, verbose_name='访问地址')
+
+    class Meta:
+        verbose_name = '视频'
+        verbose_name_plural = verbose_name

@@ -1,5 +1,6 @@
 from django.db import models
 from apps.users.models import BaseModel
+from apps.organizations.models import Teacher
 
 # 设计表结构注意事项
 # 实体和实体之间存在关系，一对多等
@@ -14,6 +15,7 @@ from apps.users.models import BaseModel
 
 
 class Course(BaseModel):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name='讲师')
     name = models.CharField(max_length=50, verbose_name="课程名")
     desc = models.CharField(max_length=300, verbose_name="课程描述")
     learn_times = models.IntegerField(default=0, verbose_name='学习时长(分钟数)')

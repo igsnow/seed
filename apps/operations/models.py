@@ -17,8 +17,8 @@ class UserAsk(BaseModel):
 
 
 class CourseComments(BaseModel):
-    user = models.ForeignKey(UserProfile, verbose_name='用户')
-    course = models.ForeignKey(Course, verbose_name='课程')
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='课程')
     comments = models.CharField(max_length=200, verbose_name='评论内容')
 
     class Meta:
@@ -27,7 +27,7 @@ class CourseComments(BaseModel):
 
 
 class UserFavorite(BaseModel):
-    user = models.ForeignKey(UserProfile, verbose_name='用户')
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
     fav_id = models.IntegerField(verbose_name='数据id')
     fav_type = models.IntegerField(choices=((1, '课程'), (2, '课程机构'), (3, '讲师')),
                                    default=1, verbose_name='收藏类型')
@@ -38,7 +38,7 @@ class UserFavorite(BaseModel):
 
 
 class UserMessage(BaseModel):
-    user = models.ForeignKey(UserProfile, verbose_name='用户')
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
     message = models.CharField(max_length=200, verbose_name='消息内容')
     has_read = models.BooleanField(default=False, verbose_name='是否已读')
 
@@ -48,8 +48,8 @@ class UserMessage(BaseModel):
 
 
 class UserCourse(BaseModel):
-    user = models.ForeignKey(UserProfile, verbose_name='用户')
-    course = models.ForeignKey(Course, verbose_name='课程')
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='课程')
 
     class Meta:
         verbose_name = '用户课程'

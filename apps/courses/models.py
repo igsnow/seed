@@ -54,3 +54,13 @@ class Video(BaseModel):
     class Meta:
         verbose_name = '视频'
         verbose_name_plural = verbose_name
+
+
+class CourseResource(BaseModel):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='课程')
+    name = models.CharField(max_length=100, verbose_name='名称')
+    file = models.FileField(upload_to='course/resource/%Y/%m', verbose_name='下载地址', max_length=200)
+
+    class Meta:
+        verbose_name = '课程资源'
+        verbose_name_plural = verbose_name

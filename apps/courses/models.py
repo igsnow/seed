@@ -38,7 +38,7 @@ class Course(BaseModel):
 class Lesson(BaseModel):
     # on_delete 表示对应的外键数据被删除后，当前的数据应该怎么办
     # 如果on_delete设置为model.SET_NULL，则需要配置 null = True , blank = True，不然django报错
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='课程')
     name = models.CharField(max_length=100, verbose_name='章节名')
     learn_times = models.IntegerField(default=0, verbose_name='学习时长(分钟数)')
 
@@ -48,7 +48,7 @@ class Lesson(BaseModel):
 
 
 class Video(BaseModel):
-    lesson = models.ForeignKey(Lesson, verbose_name='章节', on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name='章节')
     name = models.CharField(max_length=100, verbose_name='视频名')
     learn_times = models.IntegerField(default=0, verbose_name='学习时长(分钟数)')
     url = models.CharField(max_length=200, verbose_name='访问地址')

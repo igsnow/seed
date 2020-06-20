@@ -102,6 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# 重写了user表，得告诉django新用户表的模型
 AUTH_USER_MODEL = 'users.UserProfile'
 
 # Internationalization

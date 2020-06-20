@@ -20,13 +20,14 @@ class BaseModel(models.Model):
 
 
 class UserProfile(AbstractUser):
-    # null=True,blank=True 非必填字段的一种表示方法，也可以设置default为一个空字符串
+    # null=True,blank=True 非必填字段的一种表示方法，default表示必填， 不过开始可以设置一个空字符串
     nick_name = models.CharField(max_length=50, verbose_name='昵称', default='')
-    # 生日设置当前时间默认值明显不合适，于是采用第一种方式
+    # 生日设置当前时间默认值明显不合适(default)，于是采用第一种方式
     birthday = models.DateField(verbose_name='生日', null=True, blank=True)
     gender = models.CharField(max_length=6, verbose_name='性别', choices=GENDER_CHOICE)
     address = models.CharField(max_length=100, verbose_name='地址', default='')
     mobile = models.CharField(max_length=11, verbose_name='手机号码', unique=True)
+    # 配置到media文件夹下面
     image = models.ImageField(upload_to='head_image/%Y/%m', default='default.jpg')
 
     class Meta:

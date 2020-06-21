@@ -9,4 +9,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 # 将模型注册到admin,直接使用自定义的UserProfileAdmin会造成创建用户时密码没有加密的情况
-admin.site.register(UserProfile, UserAdmin)
+# admin.site.register(UserProfile, UserAdmin)

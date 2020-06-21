@@ -5,12 +5,15 @@ from apps.users.models import BaseModel
 
 # 作为外键
 class City(BaseModel):
-    name = models.CharField(max_length=20, verbose_name='城市')
+    name = models.CharField(max_length=20, verbose_name='城市名')
     desc = models.CharField(max_length=200, verbose_name='描述')
 
     class Meta:
         verbose_name = '城市'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class CourseOrg(BaseModel):

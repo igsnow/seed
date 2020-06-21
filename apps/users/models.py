@@ -28,7 +28,7 @@ class UserProfile(AbstractUser):
     address = models.CharField(max_length=100, verbose_name='地址', default='')
     mobile = models.CharField(max_length=11, verbose_name='手机号码', unique=True)
     # 配置到media文件夹下面
-    image = models.ImageField(upload_to='head_image/%Y/%m', default='default.jpg')
+    image = models.ImageField(verbose_name='用户头像', upload_to='head_image/%Y/%m', default='default.jpg')
 
     class Meta:
         # 记录表的信息，比如表名

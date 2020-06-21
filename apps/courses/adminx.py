@@ -10,7 +10,7 @@ class CourseAdmin(object):
     # 配置列表搜索条件
     search_fields = ['name', 'desc', 'detail', 'degree', 'students']
     # 配置过滤器
-    list_filter = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students']
+    list_filter = ['name', 'teacher__name', 'desc', 'detail', 'degree', 'learn_times', 'students']
     # 配置列表字段是否能编辑
     list_editable = ['degree', 'desc']
 
@@ -18,7 +18,8 @@ class CourseAdmin(object):
 class LessonAdmin(object):
     list_display = ['course', 'name', 'add_time']
     search_fields = ['course', 'name']
-    list_filter = ['course', 'name', 'add_time']
+    # 由于course是个外键，直接过滤肯定不行，外键加上双下划线拼接具体字段可进行过滤
+    list_filter = ['course__name', 'name', 'add_time']
 
 
 class VideoAdmin(object):

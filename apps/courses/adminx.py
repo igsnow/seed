@@ -11,6 +11,11 @@ class GlobalSettings(object):
     site_footer = '稻香村'
 
 
+class BaseSettings(object):
+    enable_themes = True
+    use_bootswatch = True
+
+
 # 可以不继承任何东西，于是这里可以继承object
 class CourseAdmin(object):
     # 配置列表展示列
@@ -47,3 +52,4 @@ xadmin.site.register(Lesson, LessonAdmin)
 xadmin.site.register(Video, VideoAdmin)
 xadmin.site.register(CourseResource, CourseResourceAdmin)
 xadmin.site.register(xadmin.views.CommAdminView, GlobalSettings)
+xadmin.site.register(xadmin.views.BaseAdminView, BaseSettings)

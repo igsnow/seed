@@ -15,6 +15,10 @@ class UserAsk(BaseModel):
         verbose_name = '用户咨询'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        # 做格式化的显示
+        return '{name}_{course}({mobile})'.format(name=self.name, course=self.course_name, mobile=self.mobile)
+
 
 class CourseComments(BaseModel):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
@@ -24,6 +28,9 @@ class CourseComments(BaseModel):
     class Meta:
         verbose_name = '课程评论'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.comments
 
 
 class UserFavorite(BaseModel):
@@ -36,6 +43,10 @@ class UserFavorite(BaseModel):
         verbose_name = '用户收藏'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        # 注意 user是外键
+        return '{user}_{id}'.format(user=self.user.username, id=self.fav_id)
+
 
 class UserMessage(BaseModel):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
@@ -46,6 +57,9 @@ class UserMessage(BaseModel):
         verbose_name = '用户消息'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.message
+
 
 class UserCourse(BaseModel):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='用户')
@@ -54,3 +68,6 @@ class UserCourse(BaseModel):
     class Meta:
         verbose_name = '用户课程'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.course.name

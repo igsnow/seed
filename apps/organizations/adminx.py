@@ -5,11 +5,15 @@ from apps.organizations.models import Teacher, CourseOrg, City
 
 # 可以不继承任何东西，于是这里可以继承object
 class TeacherAdmin(object):
-    pass
+    list_display = ['org', 'name', 'work_years', 'work_company']
+    search_fields = ['org', 'name', 'work_years', 'work_company']
+    list_filter = ['org', 'name', 'work_years', 'work_company']
 
 
 class CourseOrgAdmin(object):
-    pass
+    list_display = ['name', 'desc', 'click_nums', 'fav_nums']
+    search_fields = ['name', 'desc', 'click_nums', 'fav_nums']
+    list_filter = ['name', 'desc', 'click_nums', 'fav_nums']
 
 
 class CityAdmin(object):

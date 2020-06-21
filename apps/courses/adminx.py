@@ -3,6 +3,14 @@ import xadmin
 from apps.courses.models import Course, Lesson, Video, CourseResource
 
 
+# xadmni的全局配置
+class GlobalSettings(object):
+    # 左上角标题
+    site_title = '剑网3后台管理系统'
+    # 底部文字
+    site_footer = '稻香村'
+
+
 # 可以不继承任何东西，于是这里可以继承object
 class CourseAdmin(object):
     # 配置列表展示列
@@ -38,3 +46,4 @@ xadmin.site.register(Course, CourseAdmin)
 xadmin.site.register(Lesson, LessonAdmin)
 xadmin.site.register(Video, VideoAdmin)
 xadmin.site.register(CourseResource, CourseResourceAdmin)
+xadmin.site.register(xadmin.views.CommAdminView, GlobalSettings)

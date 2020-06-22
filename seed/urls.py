@@ -18,11 +18,18 @@ from django.urls import path
 from django.views.generic import TemplateView
 import xadmin
 
+# 导入自定义的LoginView
+from apps.users.views import LoginView
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
     # 代替之前自己定义def函数的render方法
     path('', TemplateView.as_view(template_name='index.html')),
     # 给跳转路径起一个名字，给指定的跳转模板文件使用，到时只要更改path的第一个参数即可
-    path('login/', TemplateView.as_view(template_name='login.html'), name='login')
+    # 使用自己定义的View进行登录校验逻辑
+    path('login/', LoginView.as_view(), name='login')
 ]
+
+# 实现视图有两种  CBV(class base view) 、 FBV(function base view)
+# 主要用前者

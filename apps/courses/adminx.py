@@ -9,6 +9,8 @@ class GlobalSettings(object):
     site_title = '剑网3后台管理系统'
     # 底部文字
     site_footer = '稻香村'
+    # 配置是否是手风琴模式
+    # menu_style = 'accordion'
 
 
 class BaseSettings(object):

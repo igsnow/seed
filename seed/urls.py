@@ -22,5 +22,7 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
     # 代替之前自己定义def函数的render方法
-    path('', TemplateView.as_view(template_name='index.html'))
+    path('', TemplateView.as_view(template_name='index.html')),
+    # 给跳转路径起一个名字，给指定的跳转模板文件使用，到时只要更改path的第一个参数即可
+    path('login/', TemplateView.as_view(template_name='login.html'), name='login')
 ]

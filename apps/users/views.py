@@ -1,7 +1,9 @@
 from django.shortcuts import render
 
 from django.views.generic.base import View
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 class LoginView(View):
@@ -25,5 +27,13 @@ class LoginView(View):
         也不利于后期其功能的扩展和维护
         '''
 
-        if (user is not None):
-            pass
+        if user is not None:
+            # 查询到用户
+            login(request, user)
+            # 登录成功之后怎么返回页面
+            # 直接render不会重定向页面，推荐使用reverse的方式
+            # return render(request, 'index.html')
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            # 未查询到用户
+            return render(request, 'login.html', {'msg': '用户名或密码错误'})
